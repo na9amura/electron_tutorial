@@ -1,4 +1,15 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu } = require("electron");
+
+const menuTemplate = [
+  {
+    label: "Edit",
+    submenu: [{ role: "undo" }, { role: "redo" }]
+  },
+  {
+    label: "Window",
+    submenu: [{ role: "minimize" }, { role: "close" }]
+  }
+];
 
 let win;
 const createWindow = () => {
@@ -8,6 +19,8 @@ const createWindow = () => {
   win.on("closed", () => {
     win = null;
   });
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
 };
 
 app.on("ready", createWindow);
