@@ -1,5 +1,8 @@
 const { app, BrowserWindow, Menu } = require("electron");
 const menubar = require("menubar");
+try {
+  require("electron-reloader")(module);
+} catch {}
 
 const mb = menubar({
   showDockIcon: true,
